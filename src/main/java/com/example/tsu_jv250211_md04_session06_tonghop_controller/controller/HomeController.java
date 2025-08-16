@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -29,9 +30,9 @@ public class HomeController {
     }
     @GetMapping("/detail/{id}")
     public String detail(Model model, @PathVariable Long id) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Movie movie = movieService.getMovieById(id);
-        List<Schedule> schedules = scheduleService.getSchedules();
+        List<Schedule> schedules = scheduleService.getSchedules().stream().filter(schedule -> schedule.getMovieTitle().equals(movie.getMovieTitle())).collect(Collectors.toList());
         model.addAttribute("movie", movie);
         model.addAttribute("schedules", schedules);
         model.addAttribute("formatter", dtf);

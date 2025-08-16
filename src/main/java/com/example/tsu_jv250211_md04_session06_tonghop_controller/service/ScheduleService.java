@@ -18,13 +18,13 @@ public class ScheduleService {
     public Schedule getScheduleById(Long id) {
         return scheduleRepository.getScheduleById(id);
     }
-    public Boolean addSchedule(Schedule schedule) {
+    public boolean addSchedule(Schedule schedule) {
         return scheduleRepository.addSchedule(schedule);
     }
-    public Boolean updateSchedule(Schedule schedule) {
+    public boolean updateSchedule(Schedule schedule) {
         return scheduleRepository.updateSchedule(schedule);
     }
-    public Boolean deleteSchedule(Long id) {
+    public boolean deleteSchedule(Long id) {
         return scheduleRepository.deleteSchedule(id);
     }
 }

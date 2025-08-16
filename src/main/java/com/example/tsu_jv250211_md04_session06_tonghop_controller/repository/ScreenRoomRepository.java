@@ -24,9 +24,9 @@ public class ScreenRoomRepository {
             screenRooms = new ArrayList<ScreenRoom>();
             while (resultSet.next()) {
                 ScreenRoom screenRoom = new ScreenRoom();
-                screenRoom.setId(resultSet.getLong("id"));
+                screenRoom.setId(Long.valueOf(resultSet.getLong("id")));
                 screenRoom.setScreenRoomName(resultSet.getString("screenRoomName"));
-                screenRoom.setTotalSeat(resultSet.getInt("totalSeat"));
+                screenRoom.setTotalSeat(Integer.valueOf(resultSet.getInt("totalSeat")));
                 screenRooms.add(screenRoom);
             }
 
@@ -48,9 +48,9 @@ public class ScreenRoomRepository {
             ResultSet resultSet = callSt.executeQuery();
             if (resultSet.next()) {
                 screenRoom = new ScreenRoom();
-                screenRoom.setId(resultSet.getLong("id"));
+                screenRoom.setId(Long.valueOf(resultSet.getLong("id")));
                 screenRoom.setScreenRoomName(resultSet.getString("screen_room_name"));
-                screenRoom.setTotalSeat(resultSet.getInt("total_seat"));
+                screenRoom.setTotalSeat(Integer.valueOf(resultSet.getInt("total_seat")));
             }
         } catch (Exception e) {
             e.printStackTrace();

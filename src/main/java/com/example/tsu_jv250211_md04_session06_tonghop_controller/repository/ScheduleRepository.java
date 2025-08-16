@@ -24,11 +24,11 @@ public class ScheduleRepository {
             schedules = new ArrayList<>();
             while (resultSet.next()) {
                 Schedule schedule = new Schedule();
-                schedule.setId(resultSet.getLong("id"));
+                schedule.setId(Long.valueOf(resultSet.getLong("id")));
                 schedule.setMovieTitle(resultSet.getString("movie_title"));
                 schedule.setShowTime(resultSet.getDate("show_time"));
-                schedule.setScreenRoomId(resultSet.getLong("screen_room_id"));
-                schedule.setAvailableSeat(Integer.parseInt(resultSet.getString("available_seats")));
+                schedule.setScreenRoomId(Long.valueOf(resultSet.getLong("screen_room_id")));
+                schedule.setAvailableSeat(Integer.valueOf(Integer.parseInt(resultSet.getString("available_seats"))));
                 schedule.setFormat(resultSet.getString("format"));
                 schedules.add(schedule);
             }
@@ -52,11 +52,11 @@ public class ScheduleRepository {
             ResultSet resultSet = callSt.executeQuery();
             if (resultSet.next()) {
                 schedule = new Schedule();
-                schedule.setId(resultSet.getLong("id"));
+                schedule.setId(Long.valueOf(resultSet.getLong("id")));
                 schedule.setMovieTitle(resultSet.getString("movie_title"));
                 schedule.setShowTime(resultSet.getDate("show_time"));
-                schedule.setScreenRoomId(resultSet.getLong("screen_room_id"));
-                schedule.setAvailableSeat(Integer.parseInt(resultSet.getString("available_seats")));
+                schedule.setScreenRoomId(Long.valueOf(resultSet.getLong("screen_room_id")));
+                schedule.setAvailableSeat(Integer.valueOf(Integer.parseInt(resultSet.getString("available_seats"))));
                 schedule.setFormat(resultSet.getString("format"));
             }
         } catch (Exception e) {
@@ -67,10 +67,10 @@ public class ScheduleRepository {
         return schedule;
     }
 
-    public Boolean addSchedule(Schedule schedule) {
+    public boolean addSchedule(Schedule schedule) {
         Connection connection = null;
         CallableStatement callSt = null;
-        Boolean result = false;
+        boolean result = false;
         try {
             connection = ConnectionDB.getConnection();
             callSt = connection.prepareCall("{call add_schedule(?,?,?,?,?)}");
@@ -86,13 +86,13 @@ public class ScheduleRepository {
         } finally {
             ConnectionDB.closeConnection(connection, callSt);
         }
-        return result;
+      return result;
     }
 
-    public Boolean updateSchedule(Schedule schedule) {
+    public boolean updateSchedule(Schedule schedule) {
         Connection connection = null;
         CallableStatement callSt = null;
-        Boolean result = false;
+        boolean result = false;
         try {
             connection = ConnectionDB.getConnection();
             callSt = connection.prepareCall("{call update_schedule(?,?,?,?,?,?)}");
@@ -114,10 +114,10 @@ public class ScheduleRepository {
         return result;
     }
 
-    public Boolean deleteSchedule(Long id) {
+    public boolean deleteSchedule(Long id) {
         Connection connection = null;
         CallableStatement callSt = null;
-        Boolean result = false;
+        boolean result = false;
         try {
             connection = ConnectionDB.getConnection();
             callSt = connection.prepareCall("{call delete_schedule(?)}");

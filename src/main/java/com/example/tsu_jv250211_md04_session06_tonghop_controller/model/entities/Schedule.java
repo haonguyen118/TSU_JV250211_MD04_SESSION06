@@ -28,7 +28,7 @@ public class Schedule {
         this.format = format;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
